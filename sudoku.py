@@ -87,6 +87,11 @@ class Variable:
         return f"{self.name:>2}: {assigned} {domain} "
 
 
+class InconsistentProblem(Exception):
+    def __init__(self):
+        pass
+
+
 class NotEqual:
     def __init__(self, a, b):
         self.a = a
@@ -127,34 +132,56 @@ class NotEqual:
 class Solver:
     @staticmethod
     def AC_1(problem):
-        changed=True
+        changed = True
         while changed:
-            changed=False
+            changed = False
             for variable in problem:
                 for constraint in variable.constraints_from:
                     changed = constraint.propagate() or changed
-        # TODO assign all the variables with domain size 1 their only possible value
+        solved=True
+        for variable in problem:
+            if len(variable.domain) == 1:
+                (variable.assignment,) = variable.domain
+            else:
+                solved=False
+        return solved
 
+    @staticmethod
+    def least_constrained_first(problem):
+        problem.sort(key = lambda var : len(var.domain))
+
+    @staticmethod
+    def most_constrained_first(problem):
+        problem.sort(key=lambda var: len(var.domain), reverse=True)
     @staticmethod
     def backtracking(problem,heuristic=None):
 
         def backtracking_step(unassigned):
+            if len(unassigned) == 0:
+                return True
             variable = unassigned.pop()
             for value in variable.domain:
                 for constraint in variable.constraints_to:
-                    if constraint.check_values(constraint.a.assignment,value):
-                        variable.assignment=value
-                        if len(unassigned)==0:
-                            return True
+                    if constraint.check_values(constraint.a.assignment, value):
+                        variable.assignment = value
                         if backtracking_step(unassigned):
                             return True
             unassigned.append(variable)
+            variable.assignment=None
             return False
-        unassigned = problem.copy()
-        # TODO remove all variables that are already assigned and assign the ones that have domain size 1
-        # TODO apply heuristic here
+        unassigned = []
+        for var in problem:
+            if len(var.domain) == 0:
+                raise InconsistentProblem
+            if not var.assignment:
+                if len(var.domain) == 1:
+                    var.assignment = var.domain[0]
+                else:
+                    unassigned.append(var)
+        # TODO these heuristic do not make a lot sense for plain backtracking - it would be better to implement Forward checking or Real Full Look Ahead
+        if heuristic is not None:
+            heuristic(unassigned)
         return backtracking_step(unassigned)
-        # TODO throw on exception on inconsistent problem so it behaves the same as AC
 
 
 # USAGE
@@ -163,8 +190,8 @@ s = Sudoku("00430020900500900107006004300600208719000740005008300060000010500350
 # convert the sudoku to CSP
 p = s.to_problem()
 # use methods to solve
-Solver.AC_1(p)
-Solver.backtracking(p) # at the time backtracking is needed even if AC finds the solution because AC doesnt assign values
+if not Solver.AC_1(p):
+    Solver.backtracking(p) # now it is possible to use AC if sufficient
 # update the sudoku with the solved problem
 s.from_problem(p)
 # u can check the state of variables of the problem
