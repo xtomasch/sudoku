@@ -153,6 +153,7 @@ class Solver:
     @staticmethod
     def most_constrained_first(problem):
         problem.sort(key=lambda var: len(var.domain), reverse=True)
+
     @staticmethod
     def backtracking(problem,heuristic=None):
 
@@ -161,21 +162,26 @@ class Solver:
                 return True
             variable = unassigned.pop()
             for value in variable.domain:
+                value_consistent = True
                 for constraint in variable.constraints_to:
-                    if constraint.check_values(constraint.a.assignment, value):
-                        variable.assignment = value
-                        if backtracking_step(unassigned):
-                            return True
+                    if constraint.a.assignment and not constraint.check_values(constraint.a.assignment, value):
+                        value_consistent = False
+                        break
+                if value_consistent:
+                    variable.assignment = value
+                    if backtracking_step(unassigned):
+                        return True
             unassigned.append(variable)
             variable.assignment=None
             return False
+
         unassigned = []
         for var in problem:
             if len(var.domain) == 0:
                 raise InconsistentProblem
             if not var.assignment:
                 if len(var.domain) == 1:
-                    var.assignment = var.domain[0]
+                    (var.assignment,) = var.domain
                 else:
                     unassigned.append(var)
         # TODO these heuristic do not make a lot sense for plain backtracking - it would be better to implement Forward checking or Real Full Look Ahead
@@ -190,8 +196,9 @@ s = Sudoku("00430020900500900107006004300600208719000740005008300060000010500350
 # convert the sudoku to CSP
 p = s.to_problem()
 # use methods to solve
-if not Solver.AC_1(p):
-    Solver.backtracking(p) # now it is possible to use AC if sufficient
+# if not Solver.AC_1(p):
+#     Solver.backtracking(p) # now it is possible to use AC if sufficient
+Solver.backtracking(p)
 # update the sudoku with the solved problem
 s.from_problem(p)
 # u can check the state of variables of the problem
