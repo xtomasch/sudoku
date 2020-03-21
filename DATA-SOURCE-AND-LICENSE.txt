@@ -1,0 +1,2 @@
+data: https://www.kaggle.com/bryanpark/sudoku/data
+license: CC0: Public Domain
