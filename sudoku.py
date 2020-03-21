@@ -118,14 +118,14 @@ class NotEqual:
 
     def propagate(self):
         to_delete = set()
-        # if variable.domain is empty problem is inconsistent, exception should be raised
         for a_value in self.a.domain:
             if not self.check_value(a_value):
                 to_delete.add(a_value)
         if len(to_delete) == 0:
             return False
         self.a.domain -= to_delete
-        # if variable.domain is empty problem is inconsistent, exception should be raised
+        if len(self.a.domain) == 0:
+            raise InconsistentProblem
         return True
 
 
