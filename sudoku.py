@@ -130,6 +130,7 @@ class NotEqual:
 
 
 class Solver:
+    counter = 0
     @staticmethod
     def AC_1(problem):
         changed = True
@@ -162,6 +163,7 @@ class Solver:
                 return True
             variable = unassigned.pop()
             for value in variable.domain:
+                Solver.counter += 1
                 value_consistent = True
                 for constraint in variable.constraints_to:
                     if constraint.a.assignment and not constraint.check_values(constraint.a.assignment, value):
@@ -175,6 +177,7 @@ class Solver:
             variable.assignment=None
             return False
 
+        Solver.counter = 0
         unassigned = []
         for var in problem:
             if len(var.domain) == 0:
@@ -185,6 +188,7 @@ class Solver:
                 else:
                     unassigned.append(var)
         # TODO these heuristic do not make a lot sense for plain backtracking - it would be better to implement Forward checking or Real Full Look Ahead
+        # TODO apply static order heuristics here
         if heuristic is not None:
             heuristic(unassigned)
         return backtracking_step(unassigned)
