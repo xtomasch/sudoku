@@ -1,7 +1,13 @@
+from timeit import timeit
+
+
 class Sudoku:
 
     def __init__(self, repr_string):
-        self.data = list(repr_string)
+        if repr_string is None:
+            self.data=list(range(81))
+        else:
+            self.data = list(repr_string)
 
     def to_problem(self):
         problem = []
@@ -130,6 +136,8 @@ class NotEqual:
 
     def propagate_against_value(self, b_value):
         self.a.domain.discard(b_value)
+        if len(self.a.domain) == 0:
+            raise InconsistentProblem
 
 
 class Solver:
@@ -151,8 +159,19 @@ class Solver:
         return solved
 
     @staticmethod
+    def first_conflict(problem):
+        if len(problem) < 2:
+            return
+        min_domain_size=min(problem,key=lambda var: len(var.domain))
+        i=problem.index(min_domain_size)
+        problem[i], problem[-1] = problem[-1], problem[i]
+
+
+
+    @staticmethod
     def least_constrained_first(problem):
         problem.sort(key = lambda var : len(var.domain))
+
 
     @staticmethod
     def most_constrained_first(problem):
@@ -197,13 +216,15 @@ class Solver:
         return backtracking_step(unassigned)
 
     @staticmethod
-    def forward_checking(problem):
+    def forward_checking(problem, first_fail_heuristic=False):
 
-        def backtracking_step(unassigned):
+        def backtracking_step(unassigned, first_fail_heuristic):
             if len(unassigned) == 0:
                 return True
-            saved_state = [var.domain.copy() for var in unassigned]
-            variable = unassigned.pop() # TODO apply first fail heuristic here
+            if first_fail_heuristic:
+                Solver.first_conflict(unassigned)
+            variable = unassigned.pop()
+            saved_state = [(var.name, var.domain.copy())for var in unassigned]
             for value in variable.domain: # TODO apply min conflict heuristic here
                 value_consistent = True
                 Solver.counter += 1
@@ -212,17 +233,19 @@ class Solver:
                         value_consistent = False
                         break
                     elif not constraint.a.assignment:
-                        constraint.propagate_against_value(value)
-                        if len(constraint.a.domain) == 0:
+                        try:
+                            constraint.propagate_against_value(value)
+                        except InconsistentProblem:
                             value_consistent = False
                             break
                 if value_consistent:
                     variable.assignment = value
-                    if backtracking_step(unassigned):
+                    if backtracking_step(unassigned, first_fail_heuristic):
                         return True
 
-                for i in range(len(unassigned)):
-                    unassigned[i].domain=saved_state[i].copy()
+                for (var_name, var_domain) in saved_state:
+                    nonlocal  problem
+                    problem[var_name].domain=var_domain.copy()
             unassigned.append(variable)
             variable.assignment = None
             return False
@@ -237,7 +260,7 @@ class Solver:
                     (var.assignment,) = var.domain
                 else:
                     unassigned.append(var)
-        return backtracking_step(unassigned)
+        return backtracking_step(unassigned, first_fail_heuristic)
 
 
 # USAGE
