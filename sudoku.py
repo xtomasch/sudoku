@@ -128,6 +128,9 @@ class NotEqual:
             raise InconsistentProblem
         return True
 
+    def propagate_against_value(self, b_value):
+        self.a.domain.discard(b_value)
+
 
 class Solver:
     counter = 0
@@ -191,6 +194,49 @@ class Solver:
         # TODO apply static order heuristics here
         if heuristic is not None:
             heuristic(unassigned)
+        return backtracking_step(unassigned)
+
+    @staticmethod
+    def forward_checking(problem):
+
+        def backtracking_step(unassigned):
+            if len(unassigned) == 0:
+                return True
+            saved_state = [var.domain.copy() for var in unassigned]
+            variable = unassigned.pop() # TODO apply first fail heuristic here
+            for value in variable.domain: # TODO apply min conflict heuristic here
+                value_consistent = True
+                Solver.counter += 1
+                for constraint in variable.constraints_to:
+                    if constraint.a.assignment and not constraint.check_values(constraint.a.assignment, value):
+                        value_consistent = False
+                        break
+                    elif not constraint.a.assignment:
+                        constraint.propagate_against_value(value)
+                        if len(constraint.a.domain) == 0:
+                            value_consistent = False
+                            break
+                if value_consistent:
+                    variable.assignment = value
+                    if backtracking_step(unassigned):
+                        return True
+
+                for i in range(len(unassigned)):
+                    unassigned[i].domain=saved_state[i].copy()
+            unassigned.append(variable)
+            variable.assignment = None
+            return False
+
+        Solver.counter = 0
+        unassigned = []
+        for var in problem:
+            if len(var.domain) == 0:
+                raise InconsistentProblem
+            if not var.assignment:
+                if len(var.domain) == 1:
+                    (var.assignment,) = var.domain
+                else:
+                    unassigned.append(var)
         return backtracking_step(unassigned)
 
 
