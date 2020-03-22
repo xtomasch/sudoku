@@ -216,16 +216,47 @@ class Solver:
         return backtracking_step(unassigned)
 
     @staticmethod
-    def forward_checking(problem, first_fail_heuristic=False):
+    def forward_checking(problem, first_fail_heuristic=False, least_conflict_heuristic=False):
 
-        def backtracking_step(unassigned, first_fail_heuristic):
+        def value_select(variable, saved_state):
+            deletions={}
+            for value in variable.domain:
+                Solver.counter+=1
+                counter = 0;
+                value_consistent = True
+                for constraint in variable.constraints_to:
+                    if constraint.a.assignment and not constraint.check_values(constraint.a.assignment, value):
+                        value_consistent = False
+                        break
+                    elif not constraint.a.assignment:
+                        try:
+                            constraint.propagate_against_value(value)
+                        except InconsistentProblem:
+                            value_consistent = False
+                            break
+                if value_consistent:
+                     deletions[value]=counter
+
+                for (var_name, var_domain) in saved_state:
+                    nonlocal  problem
+                    problem[var_name].domain=var_domain.copy()
+            result=[]
+            for (val,dels) in  sorted(deletions.items(), key=lambda x: x[1]):
+                result.append(val)
+            return result
+
+        def backtracking_step(unassigned, first_fail_heuristic, least_conflict_heuristic):
             if len(unassigned) == 0:
                 return True
             if first_fail_heuristic:
                 Solver.first_conflict(unassigned)
             variable = unassigned.pop()
             saved_state = [(var.name, var.domain.copy())for var in unassigned]
-            for value in variable.domain: # TODO apply min conflict heuristic here
+            if least_conflict_heuristic:
+                domain=value_select(variable, saved_state)
+            else:
+                domain=variable.domain
+            for value in domain:
                 value_consistent = True
                 Solver.counter += 1
                 for constraint in variable.constraints_to:
@@ -240,7 +271,7 @@ class Solver:
                             break
                 if value_consistent:
                     variable.assignment = value
-                    if backtracking_step(unassigned, first_fail_heuristic):
+                    if backtracking_step(unassigned, first_fail_heuristic, least_conflict_heuristic):
                         return True
 
                 for (var_name, var_domain) in saved_state:
@@ -260,7 +291,7 @@ class Solver:
                     (var.assignment,) = var.domain
                 else:
                     unassigned.append(var)
-        return backtracking_step(unassigned, first_fail_heuristic)
+        return backtracking_step(unassigned, first_fail_heuristic, least_conflict_heuristic)
 
 
 # USAGE
