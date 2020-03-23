@@ -1,4 +1,4 @@
-from timeit import timeit
+""""SORRY FOR LOW QUALITY CODE"""
 
 
 class Sudoku:
@@ -297,22 +297,23 @@ class Solver:
         return backtracking_step(unassigned, first_fail_heuristic, least_conflict_heuristic)
 
 
-# USAGE
-# create new sudoku from string
-s = Sudoku("004300209005009001070060043006002087190007400050083000600000105003508690042910300")
-# convert the sudoku to CSP
-p = s.to_problem()
-# use methods to solve
+# # USAGE
+# # create new sudoku from string
+# s = Sudoku("004300209005009001070060043006002087190007400050083000600000105003508690042910300")
+# # convert the sudoku to CSP
+# p = s.to_problem()
+# # use methods to solve
 # if not Solver.AC_1(p):
 #     Solver.backtracking(p) # now it is possible to use AC if sufficient
-Solver.backtracking(p)
-# update the sudoku with the solved problem
-s.from_problem(p)
-# u can check the state of variables of the problem
-for var in p:
-    print(var)
-# print the sudoku
-s.print(pretty=True)
-# compare the result with groundtruth
-print("Solution is correct? " +
-      str(s.__repr__() == "864371259325849761971265843436192587198657432257483916689734125713528694542916378"))
+# #  update the sudoku with the solved problem
+# s.from_problem(p)
+# # u can check the state of variables of the problem
+# for var in p:
+#    print(var)
+#    print the sudoku
+# s.print(pretty=True)
+# #  compare the result with groundtruth
+# print("Solution is correct? " +
+#      str(s.__repr__() == "864371259325849761971265843436192587198657432257483916689734125713528694542916378"))
+# print(Solver.counter)
+
