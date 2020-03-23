@@ -1,0 +1,179 @@
+FILENAME: 44.csv
+Number of puzzles: 57
+Solved by AC only: 57 (100.00%)
+Backtraking: min 249, avg 535.28, max 1674  values tested
+[269.6, 293.0, 324.6, 350.2, 385.0, 454.8, 541.0, 706.2, 1301.6]
+Backtraking with AC: min 0, avg 0.00, max 0  values tested
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+Forward checking: min 128, avg 286.21, max 782  values tested
+[149.2, 166.4, 182.8, 203.4, 217.0, 252.8, 294.2, 356.4, 667.8]
+Forward checking with FF: min 124, avg 315.23, max 1038  values tested
+[146.4, 169.0, 179.4, 220.0, 247.0, 321.0, 376.0, 449.0, 654.2]
+Forward checking with MC: min 44, avg 76.72, max 188  values tested
+[47.0, 51.6, 55.0, 57.0, 62.0, 66.8, 75.0, 94.0, 148.2]
+using the results of other: min 204, avg 356.23, max 839  values tested
+[216.0, 242.6, 255.8, 274.0, 283.0, 312.4, 337.2, 430.0, 693.4]
+Forward checking with both: min 44, avg 83.09, max 216  values tested
+[46.0, 52.0, 59.4, 62.2, 71.0, 79.0, 87.0, 108.4, 149.0]
+using the results of other: min 193, avg 364.46, max 896  values tested
+[210.6, 235.0, 246.4, 288.6, 314.0, 335.8, 376.4, 470.4, 668.0]
+
+FILENAME: 45.csv
+Number of puzzles: 5000
+Solved by AC only: 5000 (100.00%)
+Backtraking: min 216, avg 645.65, max 8109  values tested
+[277.0, 316.0, 360.0, 413.0, 472.5, 564.6, 674.0, 841.0, 1179.9]
+Backtraking with AC: min 0, avg 0.00, max 0  values tested
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+Forward checking: min 99, avg 337.93, max 4334  values tested
+[149.0, 172.0, 194.0, 222.0, 255.0, 297.6, 358.0, 439.0, 613.9]
+Forward checking with FF: min 95, avg 317.07, max 3083  values tested
+[142.0, 162.0, 186.0, 214.0, 247.0, 287.0, 343.0, 426.0, 574.0]
+Forward checking with MC: min 45, avg 89.91, max 947  values tested
+[49.0, 53.0, 58.0, 64.0, 71.0, 80.0, 93.0, 112.0, 148.9]
+using the results of other: min 195, avg 412.04, max 4370  values tested
+[226.0, 245.2, 267.0, 294.0, 328.0, 373.0, 431.0, 516.0, 682.0]
+Forward checking with both: min 45, avg 90.30, max 760  values tested
+[50.0, 54.0, 59.0, 65.0, 73.0, 82.0, 95.7, 115.0, 150.0]
+using the results of other: min 183, avg 388.27, max 2543  values tested
+[215.0, 233.2, 257.0, 283.0, 318.0, 358.0, 413.0, 494.0, 642.9]
+
+FILENAME: 46.csv
+Number of puzzles: 5000
+Solved by AC only: 5000 (100.00%)
+Backtraking: min 216, avg 785.64, max 28073  values tested
+[298.0, 349.0, 406.0, 468.0, 549.0, 657.0, 800.0, 1018.0, 1475.0]
+Backtraking with AC: min 0, avg 0.00, max 0  values tested
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+Forward checking: min 102, avg 403.00, max 9582  values tested
+[159.0, 184.0, 214.0, 248.0, 292.0, 344.0, 415.7, 531.0, 753.9]
+Forward checking with FF: min 103, avg 376.66, max 5120  values tested
+[153.0, 182.0, 211.0, 247.0, 289.0, 341.0, 405.0, 508.8, 694.0]
+Forward checking with MC: min 46, avg 105.54, max 3138  values tested
+[52.0, 57.0, 63.0, 69.0, 78.0, 90.0, 106.0, 132.0, 182.0]
+using the results of other: min 197, avg 475.80, max 9653  values tested
+[235.0, 259.0, 285.0, 317.0, 359.0, 410.0, 485.7, 600.0, 825.0]
+Forward checking with both: min 46, avg 105.78, max 1070  values tested
+[52.0, 58.0, 65.0, 74.0, 83.0, 95.0, 112.0, 136.0, 183.0]
+using the results of other: min 189, avg 446.22, max 4110  values tested
+[224.1, 251.0, 280.0, 316.0, 356.0, 407.6, 475.7, 577.8, 766.0]
+
+FILENAME: 47.csv
+Number of puzzles: 5000
+Solved by AC only: 4999 (99.98%)
+Backtraking: min 232, avg 977.85, max 27309  values tested
+[328.0, 393.0, 464.0, 547.0, 658.0, 789.0, 980.0, 1276.0, 1883.0]
+Backtraking with AC: min 0, avg 0.03, max 167  values tested
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+Forward checking: min 108, avg 490.82, max 10366  values tested
+[172.0, 206.0, 243.0, 286.0, 341.0, 407.0, 502.0, 647.0, 933.0]
+Forward checking with FF: min 106, avg 428.01, max 8475  values tested
+[160.0, 191.0, 228.0, 271.0, 323.5, 386.0, 471.0, 590.8, 809.9]
+Forward checking with MC: min 47, avg 126.48, max 3092  values tested
+[56.0, 62.0, 70.0, 79.0, 91.0, 105.0, 127.0, 160.0, 227.0]
+using the results of other: min 200, avg 560.84, max 10580  values tested
+[247.0, 278.0, 314.0, 358.0, 410.0, 472.0, 567.0, 719.0, 998.9]
+Forward checking with both: min 47, avg 120.94, max 2383  values tested
+[55.0, 62.0, 71.0, 80.0, 93.0, 108.0, 129.0, 158.0, 213.0]
+using the results of other: min 188, avg 499.09, max 8027  values tested
+[231.0, 263.0, 296.0, 339.0, 390.0, 452.6, 539.7, 657.0, 879.9]
+
+FILENAME: 48.csv
+Number of puzzles: 5000
+Solved by AC only: 4997 (99.94%)
+Backtraking: min 236, avg 1273.68, max 30531  values tested
+[363.0, 456.0, 547.3, 664.0, 795.5, 975.6, 1210.7, 1597.6, 2439.8]
+Backtraking with AC: min 0, avg 0.11, max 362  values tested
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+Forward checking: min 105, avg 622.75, max 13729  values tested
+[185.0, 233.2, 280.0, 337.0, 406.0, 495.0, 611.0, 790.8, 1191.8]
+Forward checking with FF: min 103, avg 542.15, max 8647  values tested
+[174.0, 219.0, 268.0, 320.0, 386.0, 466.0, 566.7, 741.0, 1041.8]
+Forward checking with MC: min 48, avg 159.41, max 3418  values tested
+[59.0, 68.0, 79.0, 91.0, 106.0, 127.0, 154.0, 195.0, 288.0]
+using the results of other: min 194, avg 691.96, max 13817  values tested
+[259.0, 301.0, 346.0, 402.0, 473.0, 563.6, 681.0, 858.0, 1255.0]
+Forward checking with both: min 48, avg 150.95, max 2148  values tested
+[59.0, 69.0, 81.0, 94.0, 111.0, 130.0, 156.0, 194.0, 279.9]
+using the results of other: min 189, avg 608.02, max 7947  values tested
+[242.0, 285.0, 333.0, 391.0, 457.0, 531.0, 635.7, 789.8, 1109.0]
+
+FILENAME: 49.csv
+Number of puzzles: 5000
+Solved by AC only: 4992 (99.84%)
+Backtraking: min 241, avg 1582.16, max 61534  values tested
+[406.0, 520.2, 641.0, 777.4, 958.0, 1187.0, 1490.4, 2016.0, 3089.8]
+Backtraking with AC: min 0, avg 0.34, max 511  values tested
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+Forward checking: min 109, avg 760.34, max 25968  values tested
+[203.0, 261.0, 324.0, 390.0, 476.0, 584.6, 729.0, 976.0, 1518.0]
+Forward checking with FF: min 106, avg 651.75, max 6342  values tested
+[188.1, 244.0, 308.0, 378.0, 460.0, 556.0, 683.0, 904.0, 1306.9]
+Forward checking with MC: min 49, avg 194.22, max 6191  values tested
+[63.0, 75.0, 89.0, 105.0, 125.0, 150.0, 183.7, 239.8, 369.9]
+using the results of other: min 199, avg 828.84, max 22213  values tested
+[273.0, 326.0, 387.0, 457.0, 547.0, 655.0, 803.7, 1044.8, 1575.8]
+Forward checking with both: min 49, avg 182.30, max 1880  values tested
+[64.0, 78.0, 92.0, 110.0, 130.0, 154.0, 187.0, 244.0, 350.0]
+using the results of other: min 191, avg 717.02, max 6869  values tested
+[258.0, 313.0, 371.0, 443.0, 525.0, 618.0, 752.0, 968.0, 1384.8]
+
+FILENAME: 50.csv
+Number of puzzles: 5000
+Solved by AC only: 4986 (99.72%)
+Backtraking: min 252, avg 2166.61, max 70216  values tested
+[457.0, 601.2, 777.0, 971.0, 1204.0, 1535.0, 2016.0, 2825.6, 4644.8]
+Backtraking with AC: min 0, avg 1.27, max 1318  values tested
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+Forward checking: min 106, avg 1008.69, max 32670  values tested
+[225.0, 299.0, 377.0, 469.0, 593.0, 740.0, 976.4, 1343.0, 2141.0]
+Forward checking with FF: min 111, avg 824.71, max 12094  values tested
+[215.0, 291.0, 370.0, 459.0, 563.0, 697.0, 869.7, 1146.0, 1658.9]
+Forward checking with MC: min 50, avg 258.97, max 7822  values tested
+[70.0, 85.0, 103.0, 124.0, 151.0, 188.0, 242.0, 328.8, 532.9]
+using the results of other: min 201, avg 1077.96, max 32731  values tested
+[295.0, 365.0, 443.0, 532.4, 649.0, 805.6, 1042.0, 1402.0, 2240.9]
+Forward checking with both: min 50, avg 230.88, max 3654  values tested
+[71.0, 90.0, 110.0, 133.0, 160.0, 195.0, 240.0, 312.0, 451.0]
+using the results of other: min 195, avg 889.06, max 12935  values tested
+[280.0, 355.0, 437.0, 521.0, 632.0, 764.6, 931.0, 1211.8, 1721.0]
+
+FILENAME: 51.csv
+Number of puzzles: 526
+Solved by AC only: 518 (98.48%)
+Backtraking: min 302, avg 2911.29, max 102992  values tested
+[524.0, 733.2, 887.1, 1153.8, 1474.5, 1838.0, 2370.6, 3412.8, 6151.0]
+Backtraking with AC: min 0, avg 10.74, max 3526  values tested
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+Forward checking: min 131, avg 1325.77, max 42415  values tested
+[251.1, 346.2, 424.0, 551.6, 685.0, 878.8, 1096.5, 1637.6, 2724.7]
+Forward checking with FF: min 136, avg 1119.45, max 10122  values tested
+[234.7, 329.8, 426.0, 558.4, 700.5, 919.0, 1246.9, 1771.2, 2436.9]
+Forward checking with MC: min 53, avg 349.10, max 12097  values tested
+[76.0, 97.4, 117.1, 146.0, 181.5, 221.2, 291.7, 411.6, 752.6]
+using the results of other: min 217, avg 1416.71, max 42922  values tested
+[317.8, 410.8, 498.0, 609.8, 762.0, 959.4, 1215.2, 1827.4, 3051.2]
+Forward checking with both: min 55, avg 306.50, max 2466  values tested
+[77.0, 100.0, 127.2, 157.8, 198.0, 258.4, 319.9, 450.0, 670.2]
+using the results of other: min 206, avg 1159.65, max 9007  values tested
+[294.0, 393.2, 504.3, 612.6, 796.0, 996.2, 1304.6, 1764.0, 2461.7]
+
+FILENAME: 52.csv
+Number of puzzles: 28
+Solved by AC only: 25 (89.29%)
+Backtraking: min 299, avg 4687.46, max 27312  values tested
+[462.5, 795.2, 1030.1, 1274.8, 2147.5, 2492.4, 3854.2, 6769.0, 16794.4]
+Backtraking with AC: min 0, avg 138.11, max 3243  values tested
+[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 140.8]
+Forward checking: min 153, avg 2133.21, max 12675  values tested
+[228.2, 343.2, 458.7, 523.4, 901.5, 1184.8, 1617.9, 3000.2, 8273.8]
+Forward checking with FF: min 216, avg 3074.43, max 19663  values tested
+[315.3, 422.4, 785.4, 1061.2, 1328.5, 1655.6, 2290.9, 4839.0, 11002.2]
+Forward checking with MC: min 61, avg 584.00, max 3643  values tested
+[84.8, 110.4, 135.0, 192.2, 252.0, 360.4, 485.7, 1154.2, 1799.6]
+using the results of other: min 244, avg 2400.14, max 14278  values tested
+[374.6, 478.4, 553.7, 768.8, 1126.0, 1458.2, 1886.2, 4681.6, 8163.2]
+Forward checking with both: min 71, avg 810.14, max 5226  values tested
+[93.4, 149.2, 176.3, 278.4, 329.0, 444.8, 662.0, 1186.6, 3148.3]
+using the results of other: min 247, avg 2991.07, max 20776  values tested
+[366.7, 540.0, 724.7, 958.2, 1250.0, 1691.2, 2371.7, 4311.8, 11068.6]

@@ -142,6 +142,7 @@ class NotEqual:
 
 class Solver:
     counter = 0
+    aux_counter = 0
     @staticmethod
     def AC_1(problem):
         changed = True
@@ -209,8 +210,7 @@ class Solver:
                     (var.assignment,) = var.domain
                 else:
                     unassigned.append(var)
-        # TODO these heuristic do not make a lot sense for plain backtracking - it would be better to implement Forward checking or Real Full Look Ahead
-        # TODO apply static order heuristics here
+        # apply static order heuristics here
         if heuristic is not None:
             heuristic(unassigned)
         return backtracking_step(unassigned)
@@ -221,7 +221,7 @@ class Solver:
         def value_select(variable, saved_state):
             deletions={}
             for value in variable.domain:
-                Solver.counter+=1
+                Solver.aux_counter+=1
                 counter = 0;
                 value_consistent = True
                 for constraint in variable.constraints_to:
@@ -230,7 +230,9 @@ class Solver:
                         break
                     elif not constraint.a.assignment:
                         try:
+                            before = len(constraint.a.domain)
                             constraint.propagate_against_value(value)
+                            counter += before - len(constraint.a.domain)
                         except InconsistentProblem:
                             value_consistent = False
                             break
@@ -282,6 +284,7 @@ class Solver:
             return False
 
         Solver.counter = 0
+        Solver.aux_counter = 0
         unassigned = []
         for var in problem:
             if len(var.domain) == 0:
