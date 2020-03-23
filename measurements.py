@@ -1,6 +1,7 @@
 import sudoku
 import os
 import statistics
+import time
 
 from functools import reduce
 
@@ -116,10 +117,101 @@ def test():
             print([round(q, 1) for q in statistics.quantiles(FCBAUX, n=10)])
             print()
 
+def test2():
+    results = []
+    with open("data/sorted/48.csv", "r") as input:
+        input.readline()
+        print("FILENAME: data/sorted/48.csv")
+        i=0
+        for line in input:
+            # SETUP
+            times = [0, 0, 0, 0, 0, 0, 0, 0]
+            (puzzle, solution) = line.split(",")
+            s = sudoku.Sudoku(puzzle)
+
+            # TEST AC
+            p = s.to_problem()
+            start=time.process_time() 
+            if not sudoku.Solver.AC_1(p):
+                if not sudoku.Solver.backtracking(p):
+                    raise Exception
+            end=time.process_time() 
+            times[0]=end-start
+
+            # DEFAULT BACKTRACKING
+            p = s.to_problem()
+            start = time.process_time() 
+            sudoku.Solver.backtracking(p)
+            end = time.process_time() 
+            times[1] = end - start
+
+            # TEST FORWARD CHECKING
+            p = s.to_problem()
+            start = time.process_time() 
+            sudoku.Solver.forward_checking(p)
+            end = time.process_time() 
+            times[2] = end - start
+
+            # TEST FORWARD CHECKING WITH FIRST FAIL
+            p = s.to_problem()
+            start = time.process_time() 
+            sudoku.Solver.forward_checking(p, True)
+            end = time.process_time() 
+            times[3] = end - start
+
+            # TEST FORWARD CHECKING WITH MIN CONFLICT
+            p = s.to_problem()
+            start = time.process_time() 
+            sudoku.Solver.forward_checking(p, least_conflict_heuristic=True)
+            end = time.process_time() 
+            times[4] = end - start
+
+            # TEST FORWARD CHECKING WITH both
+            p = s.to_problem()
+            start = time.process_time() 
+            sudoku.Solver.forward_checking(p, True, True)
+            end = time.process_time() 
+            times[5] = end - start
+            # FINALIZE
+            results.append(times)
+            i += 1
+            if i > 4999:
+                break
+    backtracking = get_col(results, 1)
+    withAC = get_col(results, 0)
+    FC = get_col(results, 2)
+    FCFF = get_col(results, 3)
+    FCMC = get_col(results, 4)
+    FCB = get_col(results, 5)
+
+    print(
+        f"AC: min {min(withAC):.4f}, avg {statistics.mean(withAC):.4f}, max {max(withAC):.4f}  values tested")
+    print([round(q, 4) for q in statistics.quantiles(withAC, n=10)])
+    print(f"Sum: {sum(withAC):.2f}")
+    print(
+        f"Backtracking: min {min(backtracking):.4f}, avg {statistics.mean(backtracking):.4f}, max {max(backtracking):.4f}  values tested")
+    print([round(q, 4) for q in statistics.quantiles(backtracking, n=10)])
+    print(f"Sum: {sum(backtracking):.2f}")
+    print(f"Forward checking: min {min(FC):.4f}, avg {statistics.mean(FC):.4f}, max {max(FC):.4f}  values tested")
+    print([round(q, 4) for q in statistics.quantiles(FC, n=10)])
+    print(f"Sum: {sum(FC):.2f}")
+    print(f"Forward checking with FF: min {min(FCFF):.4f}, avg {statistics.mean(FCFF):.4f}, max {max(FCFF):.4f}  values tested")
+    print([round(q, 4) for q in statistics.quantiles(FCFF, n=10)])
+    print(f"Sum: {sum(FCFF):.2f}")
+    print(f"Forward checking with MC: min {min(FCMC):.4f}, avg {statistics.mean(FCMC):.4f}, max {max(FCMC):.4f}  values tested")
+    print([round(q, 4) for q in statistics.quantiles(FCMC, n=10)])
+    print(f"Sum: {sum(FCMC):.2f}")
+    print(
+        f"Forward checking with both: min {min(FCB):.4f}, avg {statistics.mean(FCB):.4f}, max {max(FCB):.4f}  values tested")
+    print([round(q, 4) for q in statistics.quantiles(FCB, n=10)])
+    print(f"Sum: {sum(FCB):.2f}")
+    print()
+
 
 def get_col(list,col):
     return [row[col] for row in list]
 
 
 if __name__ == "__main__":
-    test()
+    #test()
+    test2()

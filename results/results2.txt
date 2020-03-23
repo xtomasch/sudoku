@@ -1,0 +1,19 @@
+FILENAME: data/sorted/48.csv
+AC: min 0.0050, avg 0.0077, max 0.0184  values tested
+[0.0066, 0.0067, 0.0068, 0.0069, 0.0072, 0.0081, 0.0083, 0.0085, 0.009]
+Sum: 38.35
+Backtracking: min 0.0007, avg 0.0034, max 0.0751  values tested
+[0.0011, 0.0013, 0.0016, 0.0018, 0.0022, 0.0026, 0.0032, 0.0042, 0.0064]
+Sum: 16.96
+Forward checking: min 0.0022, avg 0.0131, max 0.2907  values tested
+[0.0038, 0.0047, 0.0056, 0.0069, 0.0082, 0.0101, 0.0125, 0.0166, 0.0258]
+Sum: 65.33
+Forward checking with FF: min 0.0023, avg 0.0128, max 0.2120  values tested
+[0.0039, 0.0049, 0.006, 0.0073, 0.0088, 0.0106, 0.0131, 0.0175, 0.0256]
+Sum: 64.17
+Forward checking with MC: min 0.0047, avg 0.0187, max 0.4163  values tested
+[0.0063, 0.0074, 0.0087, 0.0103, 0.0123, 0.0147, 0.0181, 0.0235, 0.0368]
+Sum: 93.65
+Forward checking with both: min 0.0049, avg 0.0182, max 0.2811  values tested
+[0.0065, 0.0078, 0.0092, 0.011, 0.0131, 0.0155, 0.0188, 0.0241, 0.0353]
+Sum: 91.21
